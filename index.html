@@ -1,107 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DynamicTable</title>
     <style>
-h1{
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top:0%;
-    padding:7px;
-    color:white;
-    background-color: rgba(0, 0, 0, 0.445);
-}
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 0%;
+        padding: 7px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.445);
+      }
 
-.table{
-    display:block;
-    text-align: center;
-}
-        table{
-            margin-top: 20px;
-            border-collapse: collapse;
-            width: 50%;
-            margin-bottom: 10px;
-        
-        }
-        th,td{
-            border-bottom: 1px solid black;
-            padding:8px;
-            text-align: center;
-        }
-        th{
-            background-color: #3c9e03c0;
-        }
-        tr:nth-child(even) {background-color: #c9c8c8a9;}
-        tr:hover{
-            background-color:#3c9e0356;
-        }
-    button{
-        padding:5px 10px;
+      .table {
+        display: block;
+        text-align: center;
+      }
+      table {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 50%;
+        margin-bottom: 10px;
+      }
+      th,
+      td {
+        border-bottom: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #3c9e03c0;
+      }
+      tr:nth-child(even) {
+        background-color: #c9c8c8a9;
+      }
+      tr:hover {
+        background-color: #3c9e0356;
+      }
+      button {
+        padding: 5px 10px;
         background-color: #ff5e00de;
         border-radius: 10%;
         color: #fff;
-        border:none;
+        border: none;
         cursor: pointer;
-    }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Dynamic Table</h1>
     <button onclick="addRow()">Add Row</button>
     <button onclick="removeRow()">Remove Row</button>
-<br>
+    <br />
     <div class="table">
-    <table id="dynamic-table">
+      <table id="dynamic-table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Action</th>
-            </tr>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody>
-            <!-- Initial Row -->
-            <tr>
-                <td><input type="text" name="name[]" /></td>
-                <td><input type="number" name="age[]" /></td>
-                <td><button onclick="deleteRow(this)">Delete</button></td>
-            </tr>
+          <!-- Initial Row -->
+          <tr>
+            <td><input type="text" name="name[]" /></td>
+            <td><input type="number" name="age[]" /></td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+          </tr>
         </tbody>
-    </table>
-</div>
-
+      </table>
+    </div>
 
     <script>
-        function addRow() {
-            var table = document.getElementById("dynamic-table").getElementsByTagName("tbody")[0];
-            var newRow = table.insertRow(table.rows.length);
-            var nameCell = newRow.insertCell(0);
-            var ageCell = newRow.insertCell(1); // Change to 1 for age cell
-            var actionCell = newRow.insertCell(2); // Change to 2 for action cell
-    
-            nameCell.innerHTML = '<input type="text" name="name[]" />';
-            ageCell.innerHTML = '<input type="number" name="age[]" />';
-            actionCell.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+      function addRow() {
+        var table = document
+          .getElementById("dynamic-table")
+          .getElementsByTagName("tbody")[0];
+        var newRow = table.insertRow(table.rows.length);
+        var nameCell = newRow.insertCell(0);
+        var ageCell = newRow.insertCell(1); // Change to 1 for age cell
+        var actionCell = newRow.insertCell(2); // Change to 2 for action cell
+
+        nameCell.innerHTML = '<input type="text" name="name[]" />';
+        ageCell.innerHTML = '<input type="number" name="age[]" />';
+        actionCell.innerHTML =
+          '<button onclick="deleteRow(this)">Delete</button>';
+      }
+
+      function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+
+      function removeRow() {
+        var table = document
+          .getElementById("dynamic-table")
+          .getElementsByTagName("tbody")[0];
+        if (table.rows.length > 1) {
+          table.deleteRow(table.rows.length - 1);
         }
-    
-        function deleteRow(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
-    
-        function removeRow() {
-            var table = document.getElementById("dynamic-table").getElementsByTagName("tbody")[0];
-            if (table.rows.length > 1) {
-                table.deleteRow(table.rows.length - 1);
-            }
-        }
+      }
     </script>
-    
 
-
-
-
-</body>
+    <p>hello</p>
+  </body>
 </html>
